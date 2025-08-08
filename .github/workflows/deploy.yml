@@ -1,0 +1,21 @@
+name: Deploy to Server
+
+# This action triggers on every push to the 'main' branch
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    # This job tells GitHub to use your self-hosted runner
+    runs-on: self-hosted
+
+    steps:
+      # Step 1: Checks out the latest code onto your server
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      # Step 2: Builds and relaunches your Docker Compose application
+      - name: Build and Deploy
+        run: docker-compose up -d --build
