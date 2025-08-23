@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/HiomiAi-SummerInternship.iml" filepath="$PROJECT_DIR$/.idea/HiomiAi-SummerInternship.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ml-service/ml-service.iml" filepath="$PROJECT_DIR$/ml-service/ml-service.iml" />
     </modules>
   </component>
 </project>

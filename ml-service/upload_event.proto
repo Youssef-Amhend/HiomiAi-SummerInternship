@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package com.hiomiai.protobuf; // the Java package name
+
+message UploadCreatedEvent {
+  string Image_Id = 1;  //this is just the image name
+  string user_id = 2;
+}
