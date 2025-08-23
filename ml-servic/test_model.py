@@ -26,7 +26,7 @@ def test_model_loading():
         logger.info("Model initialized successfully")
         
         # Load the trained weights
-        model_path = "resnet18_pneumonia_best.pth"
+        model_path = "../ml-service/resnet18_pneumonia_best.pth"
         logger.info(f"Loading model from: {model_path}")
         
         checkpoint = torch.load(model_path, map_location=device)

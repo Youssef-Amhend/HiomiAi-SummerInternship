@@ -69,7 +69,7 @@ def load_model():
         model.fc = nn.Linear(num_ftrs, 2)
         
         # Load the trained weights
-        model_path = "resnet18_pneumonia_best.pth"
+        model_path = "../ml-service/resnet18_pneumonia_best.pth"
         checkpoint = torch.load(model_path, map_location=device)
         
         # Handle different checkpoint formats
