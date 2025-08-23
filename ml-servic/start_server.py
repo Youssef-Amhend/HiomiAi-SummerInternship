@@ -11,7 +11,7 @@ def main():
     """Main function to start the server"""
     try:
         # Check if the model file exists
-        model_path = "resnet18_pneumonia_best.pth"
+        model_path = "../ml-service/resnet18_pneumonia_best.pth"
         if not os.path.exists(model_path):
             print(f"❌ Error: Model file '{model_path}' not found!")
             print("   Please ensure the model file is in the same directory as this script.")

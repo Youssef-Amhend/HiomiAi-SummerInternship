@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   zookeeper:
@@ -78,7 +78,7 @@ services:
     networks:
       - app-network
     restart: unless-stopped
-  
+
   pgadmin:
     container_name: container-pgadmin
     image: dpage/pgadmin4:latest
@@ -91,16 +91,68 @@ services:
     networks:
       - app-network
 
-
   # Redis Cache & Queue
   cache:
     image: redis:7
     container_name: redis-cache
     ports:
-      - '6379:6379'
+      - "6379:6379"
     networks:
       - app-network
     restart: unless-stopped
+
+  # ML Service
+  ml-service:
+    build: ./ml-service
+    container_name: ml-service
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_HOST=0.0.0.0
+      - APP_PORT=8000
+      - S3_ENDPOINT_URL=http://minio:9000
+      - S3_ACCESS_KEY=murmax
+      - S3_SECRET_KEY=rootroot
+      - S3_REGION=us-east-1
+      - S3_BUCKET=s3bucket
+      - S3_USE_SSL=false
+      - MODEL_PATH=resnet18_pneumonia_best.pth
+    volumes:
+      - ./ml-service:/app
+    networks:
+      - app-network
+    restart: unless-stopped
+    depends_on:
+      - minio
+
+  # Upload MinIO Service
+  upload-service:
+    build: ./upload_minio-service
+    container_name: upload-service
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - app-network
+    restart: unless-stopped
+    depends_on:
+      - minio
+      - ml-service
+
+  # Results Service
+  results-service:
+    build: ./results-service
+    container_name: results-service
+    ports:
+      - "8085:8085"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - app-network
+    restart: unless-stopped
+    depends_on:
+      - ml-service
 
 # Define the shared network
 networks:

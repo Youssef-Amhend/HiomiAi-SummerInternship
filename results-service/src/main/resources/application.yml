@@ -1,0 +1,12 @@
+spring:
+  application:
+    name:
+      results-service
+
+server:
+  port: 8085
+
+logging:
+  level:
+    root: INFO
+    com.hiomiai.resultsservice: INFO
