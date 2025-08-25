@@ -12,7 +12,7 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping("/upload")
-@CrossOrigin(origins = "http://localhost:3001") // Add this line
+@CrossOrigin(origins = "http://localhost:3000") // Add this line
 public class UploadController {
   private static final Logger log = LoggerFactory.getLogger(UploadController.class);
 

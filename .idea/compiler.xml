@@ -10,7 +10,7 @@
         <module name="api-gateway" />
         <module name="auth-service" />
       </profile>
-      <profile name="Annotation profile for results-service" enabled="true">
+      <profile name="Annotation profile for upload_minio-service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
